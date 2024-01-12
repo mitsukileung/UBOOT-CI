@@ -1,0 +1,27 @@
+name: WRT-TEST
+
+on:
+  workflow_dispatch:
+
+permissions: write-all
+
+env:
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+jobs:
+  wrt_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Projects
+        uses: actions/checkout@main
+
+      - name: test_1
+        run: |
+          echo $(sed -n "1{s/^#//;s/\r$//;p;q}" ./Uboots.sh)
+          echo ~
+          echo $(pwd)
+          echo $GITHUB_WORKSPACE
+          echo $(basename ~)
+          echo $(basename $(pwd))
+          echo $(basename $GITHUB_WORKSPACE)
+          ./Uboots.sh
